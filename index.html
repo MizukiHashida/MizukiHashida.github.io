@@ -4,9 +4,56 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100%;
+            background-color: #333333;
+        }
+        #HeaderDiv {
+            background-color: #222222;
+            display: flex;
+            align-items: center;
+            padding: 20px 8%;
+        }
+        #logo-img {
+            width: 80px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        #Options {
+            flex: 1;
+            text-align: right;
+        }
+        #Options li {
+            display: inline-block;
+            list-style: none;
+            margin: 0px 20px;
+        }
+        #Options li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>This is the main index file</h1>
-    <a href="/PrototypeWebProject">Link to prototypewebproject</a>
+    <div id="HeaderDiv">
+        <img id="logo-img" src="logo.png"/>
+        <ul id="Options">
+            <li><a href="./PrototypeWebProject/index.html">Prototype Web Project</a></li>
+            <li><a href="">Link 2</a></li>
+            <li><a href="">Link 3</a></li>
+            <li><a href="">Link 4</a></li>
+        </ul>
+    </div>
+    <div id="MiddleDiv"></div>
+    <div id="BottomDiv"></div>
 </body>
 </html>
