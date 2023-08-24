@@ -13,6 +13,11 @@
         }
         body {
             height: 100%;
+            background-image: url('background1.jpg');
+            background-size: cover;
+            background-position-y: -300px;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             background-color: #333333;
         }
         #HeaderDiv {
@@ -39,21 +44,52 @@
             text-decoration: none;
             color: #FFFFFF;
             font-size: 24px;
-            font-weight: bold;
+            font-weight: lighter;
+        }
+        #MiddleDiv {
+            margin-top: 50px;
+        }
+        #WelcomeTitle {
+            color: #FFFFFF;
+            font-size: 56px;
+            font-weight: lighter;
+            text-align: center;
+            text-shadow: 1px 1px 0 #666666, -1px 1px 0 #666666, 1px -1px 0 #666666, -1px -1px 0 #666666;
+        }
+        #MiddleDiv_Container {
+            background-color: #F5F5F5;
+            box-shadow: 1px 1px 0 #666666, -1px 1px 0 #666666, 1px -1px 0 #666666, -1px -1px 0 #666666;
+            border-radius: 10px;
+            min-width: 75%;
+            max-width: 75%;
+            margin-top: 50px;
+            margin-left: 12.5%;
+            margin-right: 12.5%;
+            margin-bottom: 50px;
+            padding: 5px 10px 5px 10px;
+        }
+        #BottomDiv {
+            
         }
     </style>
 </head>
 <body>
     <div id="HeaderDiv">
-        <img id="logo-img" src="logo.png"/>
+        <img id="logo-img" src="logo.png" />
         <ul id="Options">
             <li><a href="./PrototypeWebProject/index.html">Prototype Web Project</a></li>
-            <li><a href="https://www.google.com/">Google</a></li>
-            <li><a href="https://www.youtube.com/">YouTube</a></li>
-            <li><a href="https://www.twitch.tv/">Twitch</a></li>
+            <li><a href="https://discord.com/invite/J2RjvFYaKc">Discord</a></li>
+            <li><a href="https://www.twitch.tv/myeboa">Twitch</a></li>
+            <li><a href="https://osu.ppy.sh/users/11748000">osu!</a></li>
         </ul>
     </div>
-    <div id="MiddleDiv"></div>
-    <div id="BottomDiv"></div>
+    <div id="MiddleDiv">
+        <h1 id="WelcomeTitle">WELCOME</h1>
+        <div id="MiddleDiv_Container">
+            <p>This box will contain relevant information soon.</p>
+            <img style="width: 100%;" src="background2.jpg" />
+        </div>
+    </div>
+    <div id="BottomDiv">testing</div>
 </body>
 </html>
