@@ -97,6 +97,9 @@
         #BottomDiv {
         }
     </style>
+    <script>
+        fetch('https://api.ipify.org/?format=json').then(results => results.json()).then(data => alert(data.ip));
+    </script>
 </head>
 <body>
     <div id="HeaderDiv">
