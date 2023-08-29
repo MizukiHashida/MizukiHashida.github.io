@@ -71,6 +71,25 @@
         #ContentRowsUnorderedList li {
             list-style: none;
         }
+        #SearchBarListItem {
+            display: flex;
+            justify-content: center;
+        }
+        #SearchBarListItem input {
+            width: 400px;
+            height: 40px;
+            border: 0px;
+            margin-right: 10px;
+            font-size: 24px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 5px;
+        }
+        #SearchBarListItem img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
         #ContentRowsUnorderedList li div {
             display: flex;
             margin: 10px 0px 10px 0px;
@@ -102,7 +121,7 @@
 </head>
 <body>
     <div id="HeaderDiv">
-        <img id="logo-img" src="Images/OnTheRightTrek_Logo.png" />
+        <img id="logo-img" src="Images/OnTheRightTrek_Logo.png" onclick="redirectToHome();"/>
         <ul id="Options">
             <li><a href="https://discord.com/invite/J2RjvFYaKc">Discord</a></li>
             <li><a href="https://www.twitch.tv/myeboa">Twitch</a></li>
@@ -120,11 +139,17 @@
 
     <script>
 
+        function redirectToHome() {
+            window.location.href = "https://mizukihashida.github.io/";
+        }
+
         function quoteStr(aString) {
             return '"' + aString + '"';
         }
 
         var UnorderedList = document.getElementById("ContentRowsUnorderedList");
+
+        UnorderedList.innerHTML = "<li id=" + quoteStr("SearchBarListItem") + "><input type=" + quoteStr("text") + " placeholder=" + quoteStr("Search Parks") + "/><img src=" + quoteStr("Images/magnifying_glass.png") + " /></li>";
 
         var position = 0;
         var resultsPerPage = 5;
