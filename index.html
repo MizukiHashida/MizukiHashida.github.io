@@ -90,6 +90,9 @@
             height: 40px;
             cursor: pointer;
         }
+        #ContentRowsUnorderedList li {
+            cursor: pointer;
+        }
         #ContentRowsUnorderedList li div {
             display: flex;
             margin: 10px 0px 10px 0px;
@@ -121,7 +124,7 @@
 </head>
 <body>
     <div id="HeaderDiv">
-        <img id="logo-img" src="Images/OnTheRightTrek_Logo.png" onclick="redirectToHome();"/>
+        <img id="logo-img" src="Images/OnTheRightTrek_Logo.png" onclick="redirectToPage('https://mizukihashida.github.io/');"/>
         <ul id="Options">
             <li><a href="https://discord.com/invite/J2RjvFYaKc">Discord</a></li>
             <li><a href="https://www.twitch.tv/myeboa">Twitch</a></li>
@@ -135,39 +138,57 @@
             </ul>
         </div>
     </div>
-    <div id="BottomDiv">Future footer will be here</div>
+    <div id="BottomDiv"></div>
 
+    <script src="dictionaries.js"></script>
     <script>
 
-        function redirectToHome() {
-            window.location.href = "https://mizukihashida.github.io/";
+        function redirectToPage(Link) {
+            window.location.href = Link;
         }
 
         function quoteStr(aString) {
             return '"' + aString + '"';
         }
 
-        var UnorderedList = document.getElementById("ContentRowsUnorderedList");
+        function loadResults() {
+            var UnorderedList = document.getElementById("ContentRowsUnorderedList");
 
-        UnorderedList.innerHTML = "<li id=" + quoteStr("SearchBarListItem") + "><input type=" + quoteStr("text") + " placeholder=" + quoteStr("Search Parks") + "/><img src=" + quoteStr("Images/magnifying_glass.png") + " /></li>";
+            // Retrieve value before setting inner html of UnorderedList as the value of input text will return to empty
+            var searchBarValue = document.getElementById("searchbar").value;
 
-        var position = 0;
-        var resultsPerPage = 5;
+            // Setting inner html of UnorderedList
+            UnorderedList.innerHTML = "<li id=" + quoteStr("SearchBarListItem") + "><input id=" + quoteStr("searchbar") + " type=" + quoteStr("text") + " value=" + quoteStr("") + " placeholder=" + quoteStr("Search Parks") + "/><img src=" + quoteStr("Images/magnifying_glass.png") + " onclick=" + quoteStr("loadResults();") + " /></li>";
 
-        for (let i = position; i < position + resultsPerPage; i++) {
-            var imgPath = null;
-            var title = null;
-            var description = null;
+            var position = 0;
+            var resultsPerPage = 5;
+            var idDictLength = Object.keys(idToParkName).length;
+            var idMatchList = [];
 
-            // Write code to assign values to imgPath, title, description based on value of i.
+            // Loop the dictionary to search for matching search results
+            for (let i = 0; i < idDictLength; i++) {
+                // Check if search match found
+                if (idToParkName[i].toLowerCase().includes(searchBarValue.toLowerCase())) {
+                    idMatchList.push(i);
+                }
+            }
 
-            // Assuming imgPath, title, and description has values, add into inner html.
-            imgPath = "Images/background1.jpg";
-            title = "Woodlands Waterfront Park";
-            description = "This is a placeholder description of the park. It is not an actual description of the park. The actual description of the park will be added soon. "
+            for (let i = 0; i < resultsPerPage; i++) {
+                if (idMatchList.length < resultsPerPage && i === idMatchList.length) {
+                    return;
+                }
 
-            UnorderedList.innerHTML += "<li><div><div><img src=" + quoteStr(imgPath) + "/></div><p><span style=" + quoteStr("font-size: 36px; font-weight: bolder;") + ">" + title + "</span><br><br>" + description + "</p></div></li><br />";
+                var title = idToParkName[idMatchList[i]];
+                var imgPath = idToParkImageName[idMatchList[i]];
+                var description = idToParkDescription[idMatchList[i]];
+                var link = idToParkLink[idMatchList[i]];
+
+                UnorderedList.innerHTML += "<li onclick=" + quoteStr("redirectToPage('" + link + "');") + "><div><div><img src=" + quoteStr(imgPath) + "/></div><p><span style=" + quoteStr("font-size: 36px; font-weight: bolder;") + ">" + title + "</span><br><br>" + description + "</p></div></li><br />";
+            }
         }
+
+        var UnorderedList = document.getElementById("ContentRowsUnorderedList");
+        UnorderedList.innerHTML = UnorderedList.innerHTML = "<li id=" + quoteStr("SearchBarListItem") + "><input id=" + quoteStr("searchbar") + " type=" + quoteStr("text") + " value=" + quoteStr("") + " placeholder=" + quoteStr("Search Parks") + "/><img src=" + quoteStr("Images/magnifying_glass.png") + " onclick=" + quoteStr("loadResults();") + " /></li>";
     </script>
 
 </body>
